@@ -8,7 +8,7 @@ namespace ProxyCall_Remover.Deobfuscation
 {
     internal class ProxyCallRemover : IDeobfuscator
     {
-        private string Name { get; set; } = "Proxy Call Remover";
+        string IDeobfuscator.Name => "Proxy Call Remover";
 
         private int RemovedProxyCalls = 0;
 
