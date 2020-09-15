@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyCall-Remover", "ProxyCall-Fixer\ProxyCall-Remover.csproj", "{09D5E76F-C557-4E1F-8CD0-80FB3711A066}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyCall-Remover", "ProxyCall-Remover\ProxyCall-Remover.csproj", "{09D5E76F-C557-4E1F-8CD0-80FB3711A066}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
