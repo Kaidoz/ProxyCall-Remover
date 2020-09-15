@@ -133,4 +133,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\ILRepack.2.0.18\build\ILRepack.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.2.0.18\build\ILRepack.props'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)packages\ILRepack.2.0.18\tools\ILRepack.exe /out:"$(TargetDir)Portabled\\$(TargetName).exe" ProxyCall-Remover.exe dnlib.dll WpfPlus.dll
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>
