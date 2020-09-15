@@ -9,6 +9,8 @@ namespace ProxyCall_Remover.Deobfuscation
 {
     internal interface IDeobfuscator
     {
+        string Name;
+
         void RemoveProtection(ModuleDef module);
 
         int GetResult();

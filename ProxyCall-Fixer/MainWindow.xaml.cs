@@ -79,6 +79,7 @@ namespace ProxyCall_Remover
         {
             foreach (var deobfuscator in Deobfuscators)
             {
+                Output("Step: " + deobfuscator.Name);
                 deobfuscator.RemoveProtection(_module);
 
                 Output("Removed proxy calls: " + deobfuscator.GetResult());

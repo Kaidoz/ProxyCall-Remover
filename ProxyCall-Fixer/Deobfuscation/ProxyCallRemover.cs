@@ -8,6 +8,8 @@ namespace ProxyCall_Remover.Deobfuscation
 {
     internal class ProxyCallRemover : IDeobfuscator
     {
+        private string Name { get; set; } = "Proxy Call Remover";
+
         private int RemovedProxyCalls = 0;
 
         private readonly Dictionary<TypeDef, List<MethodDef>> JunksMethods = new Dictionary<TypeDef, List<MethodDef>>();
