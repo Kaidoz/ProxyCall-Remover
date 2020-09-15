@@ -10,7 +10,7 @@ namespace ProxyCall_Remover.Deobfuscation
     {
         private int RemovedProxyCalls = 0;
 
-        private Dictionary<TypeDef, List<MethodDef>> JunksMethods = new Dictionary<TypeDef, List<MethodDef>>();
+        private readonly Dictionary<TypeDef, List<MethodDef>> JunksMethods = new Dictionary<TypeDef, List<MethodDef>>();
 
         private ModuleDef _module;
 
@@ -80,9 +80,7 @@ namespace ProxyCall_Remover.Deobfuscation
                         MethodDef methodDef2 = instruction.Operand as MethodDef;
                         if (IsProxyCallMethod(typeDef, methodDef2))
                         {
-                            OpCode opCode;
-                            object operand;
-                            bool IsValid = GetProxyData(methodDef2, out opCode, out operand);
+                            bool IsValid = GetProxyData(methodDef2, out OpCode opCode, out object operand);
                             if (IsValid)
                             {
                                 instruction.OpCode = opCode;
@@ -115,7 +113,7 @@ namespace ProxyCall_Remover.Deobfuscation
             {
                 return false;
             }
-            Instruction[] array = method.Body.Instructions.ToArray<Instruction>();
+            Instruction[] array = method.Body.Instructions.ToArray();
             int num = array.Length;
             if (array.Length <= 1)
             {
@@ -147,6 +145,7 @@ namespace ProxyCall_Remover.Deobfuscation
                     opCode = array[num - 2].OpCode;
                     operand = array[num - 2].Operand;
                 }
+
                 if (opCode != null)
                     return true;
             }
@@ -158,7 +157,7 @@ namespace ProxyCall_Remover.Deobfuscation
 
         private bool IsProxyCallMethod(TypeDef typeDef, MethodDef method)
         {
-            return method != null && method.IsStatic && typeDef.Methods.Contains(method);
+            return method?.IsStatic == true && typeDef.Methods.Contains(method);
         }
     }
 }

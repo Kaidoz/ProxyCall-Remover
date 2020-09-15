@@ -35,7 +35,7 @@ namespace ProxyCall_Remover
 
         private ModuleDef _module;
 
-        private List<IDeobfuscator> Deobfuscators = new List<IDeobfuscator>()
+        private readonly List<IDeobfuscator> Deobfuscators = new List<IDeobfuscator>()
         {
             new ProxyCallRemover()
         };
@@ -47,10 +47,11 @@ namespace ProxyCall_Remover
             if (string.IsNullOrEmpty(text))
                 return;
 
-            TextBlock textBlock = new TextBlock();
-            textBlock.VerticalAlignment = VerticalAlignment.Top;
-
-            textBlock.Text = text;
+            TextBlock textBlock = new TextBlock()
+            {
+                VerticalAlignment = VerticalAlignment.Top,
+                Text = text
+            };
 
             _instance.StackPanelOutput.Children.Add(textBlock);
             _instance.StackPanelOutput.UpdateLayout();
@@ -133,10 +134,12 @@ namespace ProxyCall_Remover
 
         private bool ShowDialogPath()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Assembly (*.exe;*.dll)|*.exe;*.dll";
-            openFileDialog.CheckFileExists = true;
-            openFileDialog.Multiselect = false;
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Assembly (*.exe;*.dll)|*.exe;*.dll",
+                CheckFileExists = true,
+                Multiselect = false
+            };
             if (openFileDialog.ShowDialog() == true)
             {
                 if (File.Exists(openFileDialog.FileName))
@@ -187,7 +190,10 @@ namespace ProxyCall_Remover
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                string file = files.ElementAt(0);
+                if (files.Length < 1)
+                    return;
+
+                string file = files[0];
 
                 string ext = Path.GetExtension(file).ToLower();
 
@@ -206,7 +212,9 @@ namespace ProxyCall_Remover
                 }
             }
             else
+            {
                 e.Effects = DragDropEffects.None;
+            }
         }
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
