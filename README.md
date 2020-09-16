@@ -1,7 +1,7 @@
 # ProxyCall-Remover
 Deobfuscator for remove proxy calls methods
 
-How work this:
+How work:
 1) Deobfuscation ctrl flow and other(de4dot maybe)
 2) Drop assembly and unpack proxy calls
 
